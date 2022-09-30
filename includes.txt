@@ -1,0 +1,81 @@
+/*
+Theme Name: SmP
+Author: Dr.D
+Version: 1.0.0
+*/
+
+
+<?php /* Template Name: Флот */ ?>
+
+
+<?php echo get_template_directory_uri(); ?>/
+
+
+<?php the_field( 'mainPic' ); ?>
+
+
+<?php single_post_title(); ?>
+
+
+<?php the_field( 'пассажировместимость' ); ?>
+
+<?php the_field( 'цена_аренды' ); ?>
+
+
+
+
+        <section class="gallery">
+			<?php $__images = get_field( 'галерея' ); ?>
+			<?php if ( $__images ) :  ?>
+				<?php foreach ( $__images as $__image ): ?>
+					<div class="gallery_img gallery_img_8">
+						<a href="<?php echo esc_url( $__image['url'] ); ?>">
+							<img src="<?php echo esc_url( $__image['sizes']['thumbnail'] ); ?>" alt="<?php echo esc_attr( $__image['alt'] ); ?>" />
+						</a>
+					</div>
+				<?php endforeach; ?>
+			<?php endif; ?>
+			
+
+        </section>
+		
+Тип судна: <?php the_field( 'тип_судна' ); ?> 
+
+
+
+
+
+На борту:<br/>	
+<?php $__values = get_field( 'на_борту' ); ?> 
+<?php if ( $__values ) : ?>
+	<?php foreach ( $__values as $__value ) : ?>
+	 	<?php echo esc_html( $__value ); ?> 
+	<?php endforeach; ?> 
+<?php endif; ?> 
+<br/><br/>	
+
+
+		
+		
+Галерея: <br/><br/>
+<?php $__images = get_field( 'галерея' ); ?>
+<?php if ( $__images ) :  ?>
+	<?php foreach ( $__images as $__image ): ?>
+		<a href="<?php echo esc_url( $__image['url'] ); ?>">
+			<img src="<?php echo esc_url( $__image['sizes']['thumbnail'] ); ?>" alt="<?php echo esc_attr( $__image['alt'] ); ?>" />
+		</a>
+		<p><?php echo esc_html( $__image['caption'] ); ?></p>
+	<?php endforeach; ?>
+<?php endif; ?>
+<br/><br/>
+
+Маршруты:
+<?php $_ = get_field( 'маршруты' ); ?>
+<?php if ( $_ ) : ?>
+	<?php foreach ( $_ as $post ) : ?>
+		<?php setup_postdata ( $post ); ?>
+		<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+	<?php endforeach; ?>
+	<?php wp_reset_postdata(); ?>
+<?php endif; ?>
+<br/><br/>
